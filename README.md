@@ -65,6 +65,7 @@ Deletes a message from the list. It accepts a JSON in the body of the request. A
  "message_id": 
 
 }
+```
 
 # Deploying To Kubernetes
 
