@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="https://unpkg.com/sakura.css/css/sakura.css" type="text/css">
+</head>
+<body>
+<h2>{{ title }}</h2>
+<table id="message-table" style="width:100%">
+    <tbody>
+  <tr>
+    <th>Message</th>
+    <th>Plaindrome?</th>
+  </tr>
+    {% for message in messages %}
+        <tr id="{{ message.message_id }}">
+            <td>{{ message.message }}</td>
+            {% if message.palindrome == -1 %}
+                <td id="bool{{ message.message_id }}"><button onclick="checkPalindrome('{{ message.message_id }}')">Check if Palindrome</button></td>
+            {% else %}
+                {% if message.palindrome == 0 %}
+                    <td id="bool{{ message.message_id }}">No</td>
+                {% elif message.palindrome == 1 %}
+                    <td id="bool{{ message.message_id }}">Yes</td>
+                {% endif %}
+            {% endif %}
+            <td><button onclick="deleteMessage('{{ message.message_id }}')">Delete this message</button></td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<br>
+<fieldset>
+   <form id="add-message">
+        <div>
+            <input style="width: 250px;" type="text" name="message" id="message-input"
+                   maxlength="100" minlength="" placeholder="Enter your message" required />
+            <span></span>
+        </div>
+        <div>
+            <input type="submit" class="submit" value="Submit"/>
+        </div>
+
+    </form>
+</fieldset>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="{{url_for('static', filename='functions.js')}}"></script>
+</body>
+</html>
