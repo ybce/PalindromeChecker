@@ -1,7 +1,12 @@
 
+$(document).ready(function () {
 
 
-function checkPalindrome(message_id){
+
+$(".check-word").click( function (event) {
+
+    var message_id = $(".check-word").closest("tr").prop("id");
+    console.log(message_id);
     $.ajax({
     type: "POST",
     url: "http://localhost:5000/check/",
@@ -24,9 +29,13 @@ function checkPalindrome(message_id){
         console.log(errMsg);
     }
 });
-}
+    event.preventDefault();
+});
 
-function deleteMessage(message_id){
+$(".delete-row").click(function (event) {
+
+    var message_id = $(".delete-row").closest("tr").prop("id");
+    console.info(event);
     $.ajax({
     type: "DELETE",
     url: "http://localhost:5000/delete/",
@@ -43,7 +52,8 @@ function deleteMessage(message_id){
         console.log(errMsg);
     }
 });
-}
+    event.preventDefault();
+});
 
 $( "#add-message" ).submit(function( event ) {
   var data = $('#add-message').serializeArray()[0];
@@ -60,8 +70,8 @@ $( "#add-message" ).submit(function( event ) {
         var message = data.message;
         var markup = "<tr id="+id+">" +
             "<td>"+message+"</td>" +
-            "<td id="+boolid+"><button onclick='checkPalindrome("+id+")'>Check if Palindrome</button></td>" +
-            "<td><button onclick=deleteMessage("+id+")>Delete this message</button></td>" +
+            "<td id="+boolid+"><button class='check-word'>Check if Palindrome</button></td>" +
+            "<td><button class='delete-row'>Delete this message</button></td>" +
             "</tr>";
         $('#message-table').append(markup);
         //document.getElementById("message-table").insertRow(-1).innerHTML = markup;
@@ -73,4 +83,6 @@ $( "#add-message" ).submit(function( event ) {
     }});
   $('#message-input').trigger(':reset');
   event.preventDefault();
+});
+
 });
