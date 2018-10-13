@@ -16,4 +16,4 @@ COPY . /app
 
 EXPOSE 5000
 
-CMD ["python", "qlik.py"]
+CMD ["python", "app.py"]
