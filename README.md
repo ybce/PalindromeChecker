@@ -1,4 +1,4 @@
-# Shops API
+# Palindrome Checker
 
 
 Hello!
@@ -65,77 +65,6 @@ Deletes a message from the list. It accepts a JSON in the body of the request. A
  "message_id": 
 
 }
-```
-
-### POST `/products/create/`
-Creates a new product within a shop. Accepts a JSON object in the body of the request. An example of a valid request body:
-```
-{
-	  "shop_id": 1,
-    "product_name": "Shovel",
-    "product_price": 55
-}
-```
-
-If the request is successful the call with return `{“status”: “A new order has been created”}`
-
-### POST `/orders/create/`
-Creates a new order for a specific shop_id. This order will be initialized with a dollar_value of 0 which will be updated every time new LineItems are added to the order. Accepts a JSON object in the body of the request. An example of a valid request body: 
-```
-{
-    "shop_id": 1,
-}
-```
-
-### GET `/orders/<shop_id>`
-Retrieves all the orders in the database with an optional `shop_id` parameter that restricts the results to orders in that shop only.  An example response looks like this:
-```
-{
-    "orders": [
-        {
-            "dollar_value": 105,
-            "order_id": 1,
-            "shop_id": 2
-        }
-    ]
-}
-```
-
-### POST `/line/`
-Creates a new line item for a given order. Accepts a JSON object in the body of the request. An example of a valid request body:
-```
-{
-    "order_id": 1,
-	  "product_id": 1,
-    "quantity": 2
-}
-```
-
-This call will then fetch the product’s price and update the `dollar_value` of the line item in the database depending on the quantity. Furthermore, it will update the total value of that order as well. 
-
-If the request is successful the call will return `{"status": "Your item has been added to the order"}`
-
-### GET `/line/<order_id>/`
-Retrieves all the line items in an order. An example response looks like this: 
-```
-{
-    "LineItems": [
-        {
-            "dollar_value": 60,
-            "product_id": 3,
-            "quantity": 2,
-        },
-        {
-            "dollar_value": 45,
-            "product_id": 4,
-            "quantity": 1,
-        }
-    ],
-	  "order_id": 1,    
-    "Total Value": 105,
-    "shop_id": 2
-}
-```
 
 # Deploying To Kubernetes
 
@@ -174,7 +103,7 @@ COPY . /app
 EXPOSE 5000
 
 # What commands to run
-CMD ["python", "Sopify.py"]
+CMD ["python", "qlik.py"]
 
 ```
 
