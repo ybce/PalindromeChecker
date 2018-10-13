@@ -9,7 +9,7 @@ $(document).on("click", ".check-word", function (event) {
     console.log(message_id);
     $.ajax({
     type: "POST",
-    url: "http://localhost:5000/check/",
+    url: "/check/",
     // The key needs to match your method's input parameter (case-sensitive).
     data: JSON.stringify({ "message_id": message_id }),
     contentType: "application/json; charset=utf-8",
@@ -38,7 +38,7 @@ $(document).on("click", ".delete-row" ,function (event) {
     console.info(event);
     $.ajax({
     type: "DELETE",
-    url: "http://localhost:5000/delete/",
+    url: "/delete/",
     // The key needs to match your method's input parameter (case-sensitive).
     data: JSON.stringify({ "message_id": message_id }),
     contentType: "application/json; charset=utf-8",
@@ -59,7 +59,7 @@ $( "#add-message" ).submit(function( event ) {
   var data = $('#add-message').serializeArray()[0];
   $.ajax({
     type: "POST",
-    url: "http://localhost:5000/add/",
+    url: "/add/",
     // The key needs to match your method's input parameter (case-sensitive).
     data: JSON.stringify(data),
     contentType: "application/json; charset=utf-8",
