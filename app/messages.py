@@ -9,7 +9,8 @@ from app import app
 def index():
     headers = {'Content-Type': 'text/html'}
     messages = get_messages()
-    return make_response(render_template('index.html', title="Welcome to the Palindrome Checker", messages=messages), 200, headers)
+    return make_response(render_template('index.html', title="Welcome to the Palindrome Checker", messages=messages),
+                         200, headers)
 
 @app.route('/check/', methods=['POST'])
 def post():
