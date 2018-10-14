@@ -76,26 +76,20 @@ FROM ubuntu:16.04
 
 MAINTAINER Youssef El Khalili "elkhalili.youssef@outlook.com"
 
-#Install python and pip
 RUN apt-get update -y && \
     apt-get install -y python-pip python-dev
 
 # We copy just the requirements.txt first to leverage Docker cache
-COPY ./requirements.txt /app/requirements.txt
+COPY ./requirements.txt /qlik/requirements.txt
 
-#Swtich working directories
-WORKDIR /app
+WORKDIR /qlik
 
-#Install requirements from requirements.txt
 RUN pip install -r requirements.txt
 
-#Copy contents of the directory into a new app direcroty on the VM
-COPY . /app
+COPY . /qlik
 
-#Choosing which port to be exposed in the container
 EXPOSE 5000
 
-# What commands to run
 CMD ["python", "run.py"]
 
 ```
