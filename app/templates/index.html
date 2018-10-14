@@ -17,7 +17,7 @@
         <tr id="{{ message.message_id }}">
             <td>{{ message.message }}</td>
             {% if message.palindrome == -1 %}
-                <td id="bool{{ message.message_id }}"><button class="check-word">Check if Palindrome</button></td>
+                <td id="bool{{ message.message_id }}"><button id="check-{{ message.message_id }}">Check if Palindrome</button></td>
             {% else %}
                 {% if message.palindrome == 0 %}
                     <td id="bool{{ message.message_id }}">No</td>
@@ -25,7 +25,7 @@
                     <td id="bool{{ message.message_id }}">Yes</td>
                 {% endif %}
             {% endif %}
-            <td><button class="delete-row">Delete this message</button></td>
+            <td><button id="delete-{{ message.message_id }}">Delete this message</button></td>
         </tr>
     {% endfor %}
     </tbody>
