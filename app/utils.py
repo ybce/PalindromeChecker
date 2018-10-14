@@ -12,3 +12,8 @@ def get_messages():
 def checkPalindrome(message):
     message = re.sub(r"\s+", "", message)
     return message == message[::-1]
+
+def checkMessage(message):
+    if message and re.match("^[a-zA-Z0-9_]*$", message):
+        return True
+    return False

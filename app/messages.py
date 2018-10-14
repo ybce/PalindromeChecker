@@ -1,7 +1,7 @@
 from flask import render_template, make_response, request
 from flask import jsonify
 from app import get_conn
-from utils import checkPalindrome, get_messages
+from utils import checkPalindrome, get_messages, checkMessage
 
 from app import app
 
@@ -50,27 +50,36 @@ def delete():
 def add_word():
     c = get_conn()
     message = request.json["value"]
-    m = (message, )
-    query = c.execute("INSERT INTO messages (message) VALUES (?);", m)
-    m_id = query.lastrowid
-    c.commit()
-    c.close()
-    return_value = {
-        "status": "Your message has been added",
-        "message": message,
-        "message_id": m_id
-    }
-    return make_response(jsonify(return_value), 201)
+    if checkMessage(message):
+        m = (message, )
 
+        query = c.execute("INSERT INTO messages (message) VALUES (?);", m)
+        m_id = query.lastrowid
+        c.commit()
+        c.close()
+        return_value = {
+            "status": "Your message has been added",
+            "message": message,
+            "message_id": m_id
+        }
+        return make_response(jsonify(return_value), 201)
+    else:
+        headers = {'Content-Type': 'text/html'}
+        return make_response(render_template("400.html", code=400), 400, headers)
+
+
+@app.errorhandler(400)
+def bad_request(e):
+    return render_template('400.html', code=400), 400
 
 @app.errorhandler(404)
 def page_not_found(e):
-    return render_template('404.html'), 404
+    return render_template('404.html', code=404), 404
 
 @app.errorhandler(500)
-def page_not_found(e):
-    return render_template('500.html'), 500
+def server_error(e):
+    return render_template('500.html', code=500), 500
 
 @app.errorhandler(403)
-def page_not_found(e):
-    return render_template('403.html'), 403
+def unauthorized(e):
+    return render_template('403.html', code=403), 403

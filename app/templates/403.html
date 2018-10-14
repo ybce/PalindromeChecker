@@ -3,8 +3,8 @@
     <link rel="stylesheet" href="https://unpkg.com/sakura.css/css/sakura.css" type="text/css">
 </head>
 {% block body %}
-  <h1>Page Not Found</h1>
-  <p>You are not allowed to do this.
-  <p><a href="{{ url_for('index') }}">Go somewhere nice</a>
+  <h1>{{ code }} Forbidden</h1>
+    <p>You are not allowed to do this.</p>
+    <p><a href="{{ url_for('index') }}">Go somewhere nice</a></p>
 {% endblock %}
 </html>
