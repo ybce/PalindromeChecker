@@ -20,16 +20,20 @@ def post():
     query = c.execute("SELECT message FROM messages WHERE message_id = ?", id)
     message = query.fetchone()["message"]
     palindrome = int(checkPalindrome(message))
-    print palindrome
-    m = (palindrome, message_id)
-    c.execute("UPDATE messages SET palindrome=? WHERE message_id=?", m)
-    c.commit()
-    c.close()
-    return_value = {
-        "palindrome": palindrome,
-        "message_id": message_id
-    }
-    return make_response(jsonify(return_value), 200)
+    try:
+        m = (palindrome, message_id)
+        c.execute("UPDATE messages SET palindrome=? WHERE message_id=?", m)
+        c.commit()
+        c.close()
+        return_value = {
+            "palindrome": palindrome,
+            "message_id": message_id
+        }
+        return make_response(jsonify(return_value), 200)
+    except Exception as e:
+        headers = {'Content-Type': 'text/html'}
+        return make_response(render_template("500.html", code=500), 500, headers)
+
 
 
 @app.route('/delete/', methods=['DELETE'])
@@ -37,14 +41,18 @@ def delete():
     c = get_conn()
     message_id = request.json["message_id"]
     m = (message_id, )
-    c.execute("DELETE FROM messages WHERE message_id=?", m)
-    c.commit()
-    c.close()
-    return_value = {
-        "status": "Your message has been deleted",
-        "message_id": message_id
-    }
-    return make_response(jsonify(return_value), 200)
+    try:
+        c.execute("DELETE FROM messages WHERE message_id=?", m)
+        c.commit()
+        c.close()
+        return_value = {
+            "status": "Your message has been deleted",
+            "message_id": message_id
+        }
+        return make_response(jsonify(return_value), 200)
+    except Exception as e:
+        headers = {'Content-Type': 'text/html'}
+        make_response(render_template("500.html", code=500), 500, headers)
 
 @app.route('/add/', methods=['POST'])
 def add_word():
