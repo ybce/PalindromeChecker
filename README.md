@@ -148,7 +148,7 @@ again the port option is crucial to make sure the pod was exposing port 5000 whi
 The next and final step was to expose the deployment to the internet:
 
 ```
-kubectl expose deployment flask-web --type=NodePort --name=flask-app
+kubectl expose deployment flask-web --type=NodePort --name=qlik-app
 ```
 
 The `type` flag is important becuase it dictates what type of application will be deployed the other option was to use
