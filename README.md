@@ -101,7 +101,7 @@ docker build -t gcr.io/${PROJECT_ID}/qlik-app:v1 .
 to build the the docker container where PROJECT_ID is the ID for google cloud project.
 After the image has been created I had to push it to the container registry using:
 ```
-docker push gcr.io/${PROJECT_ID}/flask-app:v1
+docker push gcr.io/${PROJECT_ID}/qlik-app:v1
 ```
 I then verified that my app can run locally using this command:
 
