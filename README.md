@@ -2,8 +2,7 @@
 
 
 Hello!
-This is a simple REST API using Flask+Python deployed in a kubernetes cluster! This is my first time using Flask and Kubernetes
-so it was exciting for me to learn both these new tools. I have used Django before but thought that Flask would be more suited to this project. 
+This is a simple REST API using Flask+Python deployed in a kubernetes cluster! This is my second time using Flask and Kubernetes.
 
 This file should show how the API was roughly created and eventually deployed. 
 
