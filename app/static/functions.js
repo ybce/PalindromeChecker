@@ -68,6 +68,7 @@ $(document).on("click", "button",function (event) {
 
 $( "#add-message" ).submit(function( event ) {
   var data = $('#add-message').serializeArray()[0];
+  $("#message-input").val("");
   $.ajax({
     type: "POST",
     url: "/add/",
