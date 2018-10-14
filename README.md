@@ -7,8 +7,10 @@ so it was exciting for me to learn both these new tools. I have used Django befo
 
 This file should show how the API was roughly created and eventually deployed. 
 
+This checker will check alphanumeric strings under 100 characters only.
+
 ## Schema
-For the backend database, I used SQLite3 to store and retrieve the data. Again, I opted for something more lightweight for this challenge for the quick prototyping benefit.  I have 4 tables in my schema and they were created as follows: 
+For the backend database, I used SQLite3 to store and retrieve the data. Again, I opted for something more lightweight for this challenge for the quick prototyping benefit.  I have 1 table in my schema and it was created as follows: 
 
 ### Messages:
 ```
@@ -19,17 +21,8 @@ CREATE TABLE "messages" (
 );
 ```
 
-### Users:
-```
-CREATE TABLE "users" ( 
-`user_id` INTEGER PRIMARY KEY AUTOINCREMENT, 
-`username` INTEGER NOT NULL UNIQUE, 
-`password` TEXT NOT NULL 
-)
-```
-
 ## Endpoints:
-There is a total of 9 endpoints for this API:
+There is a total of 4 endpoints for this API:
 
 
 ### GET `/`
@@ -70,8 +63,8 @@ Deletes a message from the list. It accepts a JSON in the body of the request. A
 # Deploying To Kubernetes
 
 The app was containerized using Docker and deployed to a Kubernetes cluster on GKE. It is currently exposed on 
-the IP Address [http://35.185.97.219:31788](http://35.185.97.219:31788). This was my first time using Kubernetes
-it was pretty challenging to understand all the networking involved but I managed to research and get the image
+the IP Address [http://35.185.97.219:31788](http://35.185.97.219:31788). This was my second time using Kubernetes
+it was pretty challenging to understand all the networking involved the first time around but I managed to research and get the image
 deployed and expose it to the internet. I was mainly following [this](https://cloud.google.com/kubernetes-engine/docs/tutorials/hello-app) 
 tutorial for guidance. 
 
@@ -104,13 +97,13 @@ COPY . /app
 EXPOSE 5000
 
 # What commands to run
-CMD ["python", "qlik.py"]
+CMD ["python", "run.py"]
 
 ```
 
 I then ran:
 ``` 
-docker build -t gcr.io/${PROJECT_ID}/flask-app:v1 .
+docker build -t gcr.io/${PROJECT_ID}/qlik-app:v1 .
 ```
 to build the the docker container where PROJECT_ID is the ID for google cloud project.
 After the image has been created I had to push it to the container registry using:
@@ -120,7 +113,7 @@ docker push gcr.io/${PROJECT_ID}/flask-app:v1
 I then verified that my app can run locally using this command:
 
 ```
-docker run --rm -p 8080:5000 gcr.io/${PROJECT_ID}/flask-app:v1
+docker run --rm -p 8080:5000 gcr.io/${PROJECT_ID}/qlik-app:v1
 ```
 
 which allows me to run `curl http://localhost:8080` and check the respose. The `-p`
@@ -155,7 +148,7 @@ gke-flask-cluster-default-pool-c414426b-t5jp  us-east1-b  n1-standard-1         
 To deploy and manage applications on a GKE cluster, 
 I had to do this by using the `kubectl` command-line tool. To create a deployment, I had to run this command:
 ```
-kubectl run flask-web --labels="run=flask-web" --image=gcr.io/${PROJECT_ID}/flask-app:v1 --port=5000
+kubectl run flask-web --labels="run=flask-web" --image=gcr.io/${PROJECT_ID}/qlik-app:v1 --port=5000
 ```
 again the port option is crucial to make sure the pod was exposing port 5000 which the application is running on.
 
@@ -208,10 +201,7 @@ The app is available on this IP address: `http://35.185.97.219:31788`
 
 ### Note
 This API was created for demo purposes only and is not representative of a development grade deployment. The API 
-could use more security features such as API token headers for authorization for example.
-I also didn't want to post this as a repo on github to avoid the IP being exposed to
-the public. 
-
+could use more features such as API token headers for authorization and a test suite.
 
 
 
