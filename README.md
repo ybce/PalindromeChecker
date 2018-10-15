@@ -9,7 +9,7 @@ This file should show how the API was roughly created and eventually deployed.
 This checker will check alphanumeric strings under 100 characters only.
 
 ## Schema
-For the backend database, I used SQLite3 to store and retrieve the data. Again, I opted for something more lightweight for this challenge for the quick prototyping benefit.  I have 1 table in my schema and it was created as follows: 
+For the backend database, I used SQLite3 to store and retrieve the data. I opted for something more lightweight for this challenge for the quick prototyping benefit.  I have 1 table in my schema and it was created as follows: 
 
 ### Messages:
 ```
@@ -110,13 +110,13 @@ docker run --rm -p 8080:5000 gcr.io/${PROJECT_ID}/qlik-app:v1
 ```
 
 which allows me to run `curl http://localhost:8080` and check the respose. The `-p`
-flag was very important becuase it allows you to expose the port on which the application
+flag was very important because it allows you to expose the port on which the application
 is running and forward it to your preferred port on the host machine.
 
 ### Creating a cluster on GCE
 
 Now I had to create a container cluster so I can run the container image that
-I tested in the previouse test. This was done using a simple `gcloud` command:
+I tested in the previous test. This was done using a simple `gcloud` command:
 
 ```commandline
 gcloud container clusters create hello-cluster --num-nodes=3
@@ -199,6 +199,7 @@ The app is available on this IP address: `http://35.185.97.219:31788`
 
 ##Deploy a new version
 Edit the file `deploy.sh` to increment the version number in all 3 commands and then run the file to build, push and set a new image.
+Please check [this](https://cloud.google.com/kubernetes-engine/docs/tutorials/hello-app) to learn about the commands and how to setup your environment.
 
 ##Running tests
 There are 6 unit tests in the repo. Run them by executing `nose2` from the top level directory. More unit tests could be
