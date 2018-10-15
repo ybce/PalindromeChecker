@@ -3,8 +3,6 @@ from flask_restful import Api
 import json
 import sqlite3
 
-with open('app/config.json') as f:
-    config = json.load(f)
 
 def get_conn():
     conn = sqlite3.connect('messages.db', check_same_thread=False)
@@ -14,7 +12,7 @@ def get_conn():
 
 app = Flask(__name__)
 api = Api(app)
-app.config["DEBUG"] = config["DEBUG"]
-app.config["SECRET_KEY"] = config["SECRET_KEY"]
+app.config["DEBUG"] = True
+
 
 from app import messages
