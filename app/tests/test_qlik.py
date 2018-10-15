@@ -25,6 +25,10 @@ class BasicTests(unittest.TestCase):
         response = self.app.get('/', follow_redirects=True)
         self.assertEqual(response.status_code, 200)
 
+    def test_not_found(self):
+        response = self.app.get('/qlik', follow_redirects=True)
+        self.assertEqual(response.status_code, 404)
+
     def test_check_palindrome_true(self):
         add_response = self.app.post('/add/', data=json.dumps(dict(value='racecar')), content_type='application/json')
         if not self.assertEqual(add_response.status_code, 201):
@@ -40,7 +44,7 @@ class BasicTests(unittest.TestCase):
         self.assertEqual(response.status_code, 200) and self.assertEqual(response.json["palindrome"], 0)
 
     def test_add_bad_request(self):
-        add_response = self.app.post('/add/', data=json.dumps(dict(value='helloworld!')), content_type='application/json')
+        add_response = self.app.post('/add/', data=json.dumps(dict(value='#$%$#%$%!')), content_type='application/json')
         self.assertEqual(add_response.status_code, 400)
 
     def test_delete(self):
