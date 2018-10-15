@@ -197,6 +197,9 @@ The app is available on this IP address: `http://35.185.97.219:31788`
 2. Install the requirements using `pip install -r requirements.txt`
 3. From the top level directory, execute `python run.py`. Check `http://localhost:5000` for the homepage.
 
+##Deploy a new version
+Edit the file `deploy.sh` to increment the version number in all 3 commands and then run the file to build, push and set a new image.
+
 ##Running tests
 There are 6 unit tests in the repo. Run them by executing `nose2` from the top level directory. More unit tests could be
 added to increase code coverage.
