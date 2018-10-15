@@ -198,13 +198,13 @@ The app is available on this IP address: `http://35.185.97.219:31788`
 3. From the top level directory, execute `python run.py`. Check `http://localhost:5000` for the homepage.
 
 ##Running tests
-There are 5 unit tests in the repo. Run them by executing `nose2` from the top level directory. More unit tests could be
+There are 6 unit tests in the repo. Run them by executing `nose2` from the top level directory. More unit tests could be
 added to increase code coverage.
 
 
 ### Note
 This API was created for demo purposes only and is not representative of a development grade deployment. The API 
-could use more features such as API token headers for authorization and a test suite.
+could use more features such as API token headers for authorization.
 
 
 
