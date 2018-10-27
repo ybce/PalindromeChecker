@@ -1,6 +1,7 @@
+### Note
+The app is not deployed anymore but could still be run locally, this project was a technical assignment assigned to me a potential employer.
+
 # Palindrome Checker
-
-
 Hello!
 This is a simple REST API using Flask+Python deployed in a kubernetes cluster! This is my second time using Flask and Kubernetes.
 
@@ -209,10 +210,3 @@ added to increase code coverage.
 ### Note
 This API was created for demo purposes only and is not representative of a development grade deployment. The API 
 could use more features such as API token headers for authorization.
-
-
-
-
-
-
-
