@@ -1,5 +1,5 @@
 ### Note
-The app is not deployed anymore but could still be run locally, this project was a technical assignment assigned to me a potential employer.
+The app is not deployed anymore but could still be run locally, this project was a technical assesment assigned to me by a potential employer.
 
 # Palindrome Checker
 Hello!
