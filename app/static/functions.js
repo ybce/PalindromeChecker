@@ -86,7 +86,6 @@ $( "#add-message" ).submit(function( event ) {
             "<td><button id='delete-"+id+"'>Delete this message</button></td>" +
             "</tr>";
         $('#message-table').append(markup);
-        //document.getElementById("message-table").insertRow(-1).innerHTML = markup;
 
     },
     failure: function(errMsg) {
