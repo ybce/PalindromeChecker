@@ -1,6 +1,7 @@
+### Note
+The app is not deployed anymore but could still be run locally, this project was a technical assesment assigned to me by a potential employer.
+
 # Palindrome Checker
-
-
 Hello!
 This is a simple REST API using Flask+Python deployed in a kubernetes cluster! This is my second time using Flask and Kubernetes.
 
@@ -197,11 +198,11 @@ The app is available on this IP address: `http://35.185.97.219:31788`
 2. Install the requirements using `pip install -r requirements.txt`
 3. From the top level directory, execute `python run.py`. Check `http://localhost:5000` for the homepage.
 
-##Deploy a new version
+## Deploy a new version
 Edit the file `deploy.sh` to increment the version number in all 3 commands and then run the file to build, push and set a new image.
 Please check [this](https://cloud.google.com/kubernetes-engine/docs/tutorials/hello-app) to learn about the commands and how to setup your environment.
 
-##Running tests
+## Running tests
 There are 6 unit tests in the repo. Run them by executing `nose2` from the top level directory. More unit tests could be
 added to increase code coverage.
 
@@ -209,10 +210,3 @@ added to increase code coverage.
 ### Note
 This API was created for demo purposes only and is not representative of a development grade deployment. The API 
 could use more features such as API token headers for authorization.
-
-
-
-
-
-
-
